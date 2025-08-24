@@ -16,3 +16,8 @@ class RegistrationForm(forms.ModelForm):
         if password1 and password2 and password1 != password2:
             self.add_error('password2', 'Password do not match')
         return cleaned_data
+    
+class RegistationConfirmForm(forms.Form):
+    confirmation_key = forms.CharField(
+        widget=forms.widgets.NumberInput, 
+        max_length=6)
