@@ -21,3 +21,7 @@ class RegistationConfirmForm(forms.Form):
     confirmation_key = forms.CharField(
         widget=forms.widgets.NumberInput, 
         max_length=6)
+    
+class LoginForm(forms.Form):
+    username = forms.CharField(label='Username')
+    password = forms.CharField(label='Password', widget=forms.widgets.PasswordInput)

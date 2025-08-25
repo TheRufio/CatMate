@@ -4,6 +4,7 @@
 {% endblock %}
 
 {% block title %}
+Registration
 {% endblock %}
 
 {% block content %}
@@ -12,4 +13,5 @@
     {{ form.as_p }}
     <button type="submit">Submit</button>
 </form>
+<a href="{% url 'registration:login' %}">Login</a>
 {% endblock %}

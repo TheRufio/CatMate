@@ -1,9 +1,10 @@
 from django.shortcuts import render, redirect
 from django.views import View
 from django.http import HttpResponse
+from django.contrib.auth import authenticate, login
 from django.core.mail import send_mail
 from django.conf import settings
-from .forms import RegistrationForm, RegistationConfirmForm
+from .forms import RegistrationForm, RegistationConfirmForm, LoginForm
 from .models import CustomUser
 from random import randint
 
@@ -58,5 +59,26 @@ class RegistrationConfirmView(View):
                 )
                 request.session.pop('registration_data', None)
                 request.session.pop('confirmation_key', None)
+                return redirect('gallery:gallery')
+        return render(request, self.template, {'form': form})
+    
+class LoginView(View):
+    template = 'registration/login.html'
+    form_class = LoginForm
+
+    def get(self, request):
+        form = self.form_class()
+        return render(request, self.template, {'form': form})
+    
+    def post(self, request):
+        form = self.form_class(request.POST)
+        if form.is_valid():
+            print('form valid')
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password']
+            user = authenticate(request, username=username, password=password)
+            if user is not None:
+                login(request, user)
                 return redirect('gallery:home')
         return render(request, self.template, {'form': form})
+    

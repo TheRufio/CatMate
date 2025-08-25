@@ -4,10 +4,11 @@
 {% endblock %}
 
 {% block title %}
-Confirm
+Login
 {% endblock %}
 
 {% block content %}
+{{form.erorrs}}
 <form method="post">
     {% csrf_token %}
     {{ form.as_p }}
