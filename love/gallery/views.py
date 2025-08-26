@@ -10,8 +10,10 @@ class LogoutView(LoginRequiredMixin, View):
         return redirect('registration:login')
     
 class GalleryView(LoginRequiredMixin, View):
+    template = 'gallery/gallery.html'
+    
     def get(self, request):
-        return HttpResponse("Test is completed")
+        return render(request, self.template)
 
 class HomeView(LoginRequiredMixin, View):
     template = 'gallery/home.html'
