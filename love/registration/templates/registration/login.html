@@ -9,6 +9,7 @@ Login
 
 {% block content %}
 {{form.erorrs}}
+<a href="{% url 'registration:registration' %}">Registration</a>
 <form method="post">
     {% csrf_token %}
     {{ form.as_p }}

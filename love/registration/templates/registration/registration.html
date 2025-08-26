@@ -8,10 +8,10 @@ Registration
 {% endblock %}
 
 {% block content %}
+<a href="{% url 'registration:login' %}">Login</a>
 <form method="post">
     {% csrf_token %}
     {{ form.as_p }}
     <button type="submit">Submit</button>
 </form>
-<a href="{% url 'registration:login' %}">Login</a>
 {% endblock %}

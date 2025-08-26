@@ -1,6 +1,5 @@
 from django.shortcuts import render, redirect
 from django.views import View
-from django.http import HttpResponse
 from django.contrib.auth import authenticate, login
 from django.core.mail import send_mail
 from django.conf import settings
@@ -81,4 +80,3 @@ class LoginView(View):
                 login(request, user)
                 return redirect('gallery:home')
         return render(request, self.template, {'form': form})
-    
