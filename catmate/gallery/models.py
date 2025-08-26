@@ -28,6 +28,7 @@ from django.db import models
             galleries
             interests
 
+            
     ~ Gallery ~
         Gallery:
             image
