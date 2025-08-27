@@ -36,8 +36,8 @@ from django.db import models
             relation
             date
             is_special_day   
-    ~ Chat ~
-        Chat:
+    ~ Main ~
+        
 
 
     ~ Relation ~
@@ -50,9 +50,9 @@ from django.db import models
     # Profile (user): interests like football, sport, programming...
     #
     # Applications: ~ registration  (username, password, email, gender, interests)
+    #               + main          (chats, speacial chat *with love or friend after "CatLink"*)
     #               ~ gallery       (photoes folder, special days...)
-    #               + chat          (chats, speacial chat *with love or friend after "CatLink"*)
     #               + relation      (friends, love, achievements, love & friends coin)
-    #               + market        (buy & sale: gifts, unique features... )
+    #               + marketplace   (buy & sale: gifts, unique features... )
     #               + event         (daily/monthly/yers/season events and mini games)
 """
