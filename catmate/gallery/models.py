@@ -11,7 +11,7 @@ from django.db import models
  |  ~ Relations ~
  -->chat (user1->group<-user2) #special <3*
     relation (user1->group<-user2)
-    relation profile (user1<-profile->user2) #with achievements per day/season/game/ivent <3*
+    relation profile (user1<-profile->user2) #with achievements per day/season/game/event <3*
     # day/season/game/ivent/gallery/chat publication and so on.. think about it and carrency (for achievements)
     gallery (user1<-gallery->user2) optimization!!!!
 
@@ -51,7 +51,8 @@ from django.db import models
     #
     # Applications: ~ registration  (username, password, email, gender, interests)
     #               ~ gallery       (photoes folder, special days...)
-    #               + chat          (chats, speacial chat *with couple or friend after "CatLink"*)
-    #               + relation      (friends, couple, achievements, love & friends coin)
+    #               + chat          (chats, speacial chat *with love or friend after "CatLink"*)
+    #               + relation      (friends, love, achievements, love & friends coin)
     #               + market        (buy & sale: gifts, unique features... )
+    #               + event         (daily/monthly/yers/season events and mini games)
 """
