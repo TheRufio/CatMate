@@ -17,12 +17,14 @@ from django.db import models
 
     ~ Registration ~
         CustomUser:
-            username
-            firstname
-            lastname
+            *username
+            *firstname
+            *lastname
+
+
+        UserProfile:
             age
             gender
-        Profile:
             chats
             special chats
             galleries
