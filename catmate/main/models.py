@@ -1,5 +1,7 @@
 from django.db import models
 from registration.models import CustomUser
+from marketplace.models import Item, ChatProfileStyle
+from gallery.models import Gallery
 
 """
         # Choices #
@@ -26,11 +28,10 @@ class Gender(models.TextChoices):
 class Interes(models.Model):
     name = models.CharField(max_length=80, unique=True)
 
-class Profile(models.Model):
+class UserProfile(models.Model):
     user = models.ForeignKey(
-        CustomUser,
-        on_delete=models.CASCADE,
-        related_name='user_profile'
+        ChatProfileStyle,
+        on_delete=models.CASCADE
     )
     avatar = models.ImageField(upload_to='avatars/')
     age = models.PositiveIntegerField()
@@ -53,9 +54,19 @@ class ChatProfile(models.Model):
     coins = models.IntegerField()
     max_coins = models.IntegerField()
     # achievements
-    # inventory
-    # gallery
-    # style_item (ChatProfileStyle)
+    inventory = models.ForeignKey(
+        'Inventory',
+        on_delete=models.CASCADE
+    )
+    gallery = models.ForeignKey(
+        Gallery,
+        on_delete=models.CASCADE
+    )
+    style_item = models.ForeignKey(
+        Item,
+        on_delete=models.CASCADE,
+        related_name='style'
+    )
 
 class Chat(models.Model):
     chat_profile = models.OneToOneField(
@@ -63,7 +74,7 @@ class Chat(models.Model):
         on_delete=models.CASCADE
     )
     name = models.CharField(max_length=100)
-    created_at = models.DateTimeField(auto_now=True)
+    created_at = models.DateTimeField(auto_now_add=True)
     special_type = models.CharField(
         max_length=6,
         choices=Specials.choices
@@ -91,8 +102,16 @@ class Message(models.Model):
         models.CASCADE
     )
     text = models.TextField()
-    timestamp = models.DateTimeField(auto_now=True)
-    edited_at = models.DateTimeField(blank=True)
+    timestamp = models.DateTimeField(auto_now_add=True)
+    edited_at = models.DateTimeField(blank=True, auto_now=True)
 
-class Item(models.Model):
-    pass
+class Inventory(models.Model):
+    chat_profile = models.ForeignKey(
+        ChatProfile,
+        on_delete=models.CASCADE
+    )
+    item = models.ForeignKey(
+        Item,
+        on_delete=models.CASCADE,
+    )
+    quantity = models.PositiveIntegerField(default=1)
