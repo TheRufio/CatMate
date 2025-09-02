@@ -11,7 +11,7 @@ from gallery.models import Gallery
 class Specials(models.TextChoices):
     NONE = 'none', 'None'
     FRIEND = 'friend', 'Friend'
-    Love = 'love', 'Love'
+    LOVE = 'love', 'Love'
 
 class Gender(models.TextChoices):
     MALE = 'male', 'Male'
