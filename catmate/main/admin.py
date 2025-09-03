@@ -1,3 +1,4 @@
 from django.contrib import admin
+from .models import UserProfile, ChatProfile, Chat, Message, ChatMember, Interes, Inventory, Achievement
 
-# Register your models here.
+admin.site.register((UserProfile, ChatProfile, Chat, Message, ChatMember, Interes, Inventory, Achievement))

@@ -1,6 +1,7 @@
 from django.db import models
 from main.choices import Specials
 from .choices import ItemType, Rarity, Currency, ListingStatus, LedgerReason, OrderStatus
+
 class Item(models.Model):
     name = models.CharField(max_length=80)
     type = models.CharField(max_length=30, choices=ItemType.choices)

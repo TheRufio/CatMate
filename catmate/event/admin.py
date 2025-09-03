@@ -1,3 +1,4 @@
 from django.contrib import admin
+from .models import Event, Events, GiftItem
 
-# Register your models here.
+admin.site.register((Event, Events, GiftItem))
