@@ -1,44 +1,6 @@
 from django.db import models
-from main.models import Specials, ChatProfile, Inventory
-
-class ItemType(models.TextChoices):
-    EMOTION = 'emotion', 'Emotion'
-    MESSAGE = 'message', 'Message'
-    PROFILE = 'profile', 'Profile'
-    GALLERY = 'gallery', 'Gallery'
-
-class Rarity(models.TextChoices):
-    COMMON = "common", "Common"
-    UNCOMMON = "uncommon", "Uncommon"
-    RARE = "rare", "Rare"
-    EPIC = "epic", "Epic"
-    LEGENDARY = "legendary", "Legendary"
-    MYTHIC = "mythic", "Mythic"
-    EXOTIC = "exotic", "Exotic"
-    DIVINE = "divine", "Divine"
-    CELESTIAL = "celestial", "Celestial"
-    UNIQUE = "unique", "Unique"
-
-class Currency(models.TextChoices):
-    LOVE_COIN = 'love coin', 'Love coin'
-    FRIEND_COIN = 'friend coin', 'Friend coin'
-    ANY_COIN = 'any coin', 'Any coin'
-
-class ListingStatus(models.TextChoices):
-    ACTIVE = 'active', 'Active'
-    SOLD = 'sold', 'Sold'
-    CANCELLED = 'cancelled', 'Cancelled'
-
-class OrderStatus(models.TextChoices):
-    PENDING = 'pending', 'Pending'
-    PAID = 'paid', 'Paid'
-    FAILED = 'failed', 'Failed'
-    REFUNDED = 'refunded', 'Refunded'
-
-class LedgerReason(models.TextChoices):
-    BUY = 'buy', 'Buy'
-    SELL = 'sell', 'Sell'
-
+from main.choices import Specials
+from .choices import ItemType, Rarity, Currency, ListingStatus, LedgerReason, OrderStatus
 class Item(models.Model):
     name = models.CharField(max_length=80)
     type = models.CharField(max_length=30, choices=ItemType.choices)
@@ -77,11 +39,11 @@ class GalleryStyle(models.Model):
 
 class Listing(models.Model):
     sellers = models.ForeignKey(
-        ChatProfile,
+        'main.ChatProfile',
         on_delete=models.CASCADE
     )
     inventory_item = models.ForeignKey(
-        Inventory,
+        'main.Inventory',
         on_delete=models.CASCADE
     )
     quantity = models.IntegerField(default=1)
@@ -96,21 +58,21 @@ class Order(models.Model):
         on_delete=models.CASCADE
     )
     buyers = models.ForeignKey(
-        ChatProfile,
+        'main.ChatProfile',
         on_delete=models.CASCADE
     )
     quantity = models.IntegerField(default=1)
     price_each_cached = models.IntegerField()
     total = models.IntegerField()
-    status = models.CharField(choices=OrderStatus.choices)
+    status = models.CharField(max_length=8, choices=OrderStatus.choices)
 
 class Ledger(models.Model):
     from_profile = models.ForeignKey(
-        ChatProfile,
+        'main.ChatProfile',
         on_delete=models.CASCADE
     )
     from_profile = models.ForeignKey(
-        ChatProfile,
+        'main.ChatProfile',
         on_delete=models.CASCADE
     )
     amount = models.IntegerField()

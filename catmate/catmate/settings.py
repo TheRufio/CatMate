@@ -38,9 +38,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'event',
     'gallery',
-    'registration',
-    'main'
+    'main',
+    'marketplace',
+    'registration'
 ]
 
 MIDDLEWARE = [
@@ -81,7 +83,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'OPTIONS': {
-            'read_default_file': path.join(BASE_DIR, 'catmate/my.cnf') 
+            'read_default_file': path.join(BASE_DIR, 'my.cnf') 
         },
     }
 }

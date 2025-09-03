@@ -1,9 +1,11 @@
 from django.db import models
-from main.models import ChatProfile
 from marketplace.models import Item, Currency
 
 class Events(models.Model):
-    members = models.ManyToManyField(ChatProfile)
+    members = models.ManyToManyField(
+        'main.ChatProfile',
+        related_name='members'
+    )
 
 class Event(models.Model):
     event = models.ForeignKey(
@@ -25,4 +27,4 @@ class GiftItem(models.Model):
     )
     item_quantity = models.IntegerField()
     award_coin = models.IntegerField(blank=True)
-    currency = models.CharField(choices=Currency.choices)
+    currency = models.CharField(max_length=11, choices=Currency.choices)

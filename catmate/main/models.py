@@ -1,36 +1,12 @@
 from django.db import models
-from registration.models import CustomUser
-from marketplace.models import Item, ChatProfileStyle
-from gallery.models import Gallery
-
-"""
-        # Choices #
-"""
-
-
-class Specials(models.TextChoices):
-    NONE = 'none', 'None'
-    FRIEND = 'friend', 'Friend'
-    LOVE = 'love', 'Love'
-
-class Gender(models.TextChoices):
-    MALE = 'male', 'Male'
-    FEMALE = 'female', 'Female'
-
-
-
-"""
-        # User / Profile
-"""
-
-
+from .choices import Gender, Specials
 
 class Interes(models.Model):
     name = models.CharField(max_length=80, unique=True)
 
 class UserProfile(models.Model):
     user = models.ForeignKey(
-        ChatProfileStyle,
+        'marketplace.ChatProfileStyle',
         on_delete=models.CASCADE
     )
     avatar = models.ImageField(upload_to='avatars/')
@@ -41,29 +17,30 @@ class UserProfile(models.Model):
     )
     interests = models.ManyToManyField(Interes)
 
-
-
-"""
-       # Communication 
-"""
-
-
-
 class ChatProfile(models.Model):
-    # events
     coins = models.IntegerField()
     max_coins = models.IntegerField()
-    # achievements
+    
+    achievement = models.ForeignKey(
+        'Achievement',
+        on_delete=models.CASCADE
+    )
+    events = models.ForeignKey(
+        'event.Events',
+        on_delete=models.CASCADE
+    )
+
+    
     inventory = models.ForeignKey(
         'Inventory',
         on_delete=models.CASCADE
     )
     gallery = models.ForeignKey(
-        Gallery,
+        'gallery.Gallery',
         on_delete=models.CASCADE
     )
     style_item = models.ForeignKey(
-        Item,
+        'marketplace.Item',
         on_delete=models.CASCADE,
         related_name='style'
     )
@@ -86,7 +63,7 @@ class ChatMember(models.Model):
         on_delete=models.CASCADE
     )
     user = models.ForeignKey(
-        CustomUser,
+        'registration.CustomUser',
         on_delete=models.CASCADE
     )
     chat_avatar = models.ImageField(upload_to='chat/avatars/')
@@ -108,10 +85,19 @@ class Message(models.Model):
 class Inventory(models.Model):
     chat_profile = models.ForeignKey(
         ChatProfile,
-        on_delete=models.CASCADE
+        on_delete=models.CASCADE,
+        related_name='chat_profile_inventory'
     )
     item = models.ForeignKey(
-        Item,
+        'marketplace.Item',
         on_delete=models.CASCADE,
     )
     quantity = models.PositiveIntegerField(default=1)
+
+class Achievement(models.Model):
+    name = models.CharField(max_length=80)
+    description = models.TextField()
+    special_type = models.CharField(
+        max_length=6,
+        choices=Specials.choices
+    )

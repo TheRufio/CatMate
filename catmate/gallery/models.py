@@ -1,10 +1,10 @@
 from django.db import models
-from main.models import ChatMember, ChatProfile
 
 class Gallery(models.Model):
     chat_profile = models.ForeignKey(
-        ChatProfile,
-        on_delete=models.CASCADE
+        'main.ChatProfile',
+        on_delete=models.CASCADE,
+        related_name='chat_profile'
     )
     title = models.CharField(max_length=120)
     description = models.CharField(max_length=255)
@@ -19,7 +19,7 @@ class Memory(models.Model):
     image = models.ImageField(upload_to='gallery/images/')
     caption = models.CharField(max_length=255)
     added_by = models.ForeignKey(
-        ChatMember,
+        'main.ChatMember',
         on_delete=models.CASCADE
     )
     added_at = models.DateTimeField(auto_now_add=True)
