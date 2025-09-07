@@ -1,6 +1,7 @@
 {% extends 'registration/template.html' %}
-
+{% load static %}
 {% block head %}
+<link rel="stylesheet" href="{% static 'registration/main.css' %}">
 {% endblock %}
 
 {% block title %}
@@ -8,11 +9,21 @@ Login
 {% endblock %}
 
 {% block content %}
-{{form.erorrs}}
-<a href="{% url 'registration:registration' %}">Registration</a>
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Submit</button>
-</form>
+<div class="wrapper">
+<div class="container">
+    <a href="{% url 'registration:registration' %}">⮜</a>
+    <form method="post">
+        {% csrf_token %}
+        {% for field in form %}
+            {{ field.label_tag }}
+            {{ field }}
+            {% if field.errors %}
+                {{ field.errors }}
+            {% endif %}
+        {% endfor %}
+        <button type="submit">Submit</button>
+    </form>
+</div>
+
+</div>
 {% endblock %}

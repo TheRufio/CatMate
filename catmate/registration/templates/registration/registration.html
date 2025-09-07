@@ -10,20 +10,20 @@ Registration
 {% endblock %}
 
 {% block content %}
-    <a href="{% url 'registration:login' %}">Login</a>
-    <form method="post" >
+<div class="wrapper">
+<div class="container">
+    <a href="{% url 'registration:login' %}">⮞</a>
+    <form method="post" autocomplete="off">
         {% csrf_token %}
         {% for field in form %}
-            <div>
-                {{ field.label_tag }}
-                {{ field }}
-                {% if field.errors %}
+            {{ field.label_tag }}
+            {{ field }}
+            {% if field.errors %}
                 {{ field.errors }}
-                {% endif %}
-            </div>
-
+            {% endif %}
         {% endfor %}
-        <button type="submit">Submit</button>
+        <button type="submit">✔</button>
     </form>
+</div>
 </div>
 {% endblock %}
