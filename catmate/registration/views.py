@@ -39,8 +39,10 @@ class RegistrationConfirmView(View):
     template = 'registration/confirm.html'
 
     def get(self, request):
+        # if not request.session.get("confirmation_key") or not request.session.get("registration_data"):
+        #     return redirect('registration:registration')
         form = self.form_class()
-        return render(request, self.template, {'form': form})
+        return render(request, self.template, {"form": form})
     
     def post(self, request):
         form = self.form_class(request.POST)

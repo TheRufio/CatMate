@@ -1,6 +1,8 @@
 {% extends 'registration/template.html' %}
+{% load static %}
 
 {% block head %}
+    <link rel="stylesheet" href="{% static 'registration/main.css' %}" >
 {% endblock %}
 
 {% block title %}
@@ -8,9 +10,14 @@ Confirm
 {% endblock %}
 
 {% block content %}
+<div class="wrapper">
+<div class="container">
 <form method="post">
     {% csrf_token %}
     {{ form.as_p }}
     <button type="submit">Submit</button>
 </form>
+</div>
+</div>
+
 {% endblock %}
