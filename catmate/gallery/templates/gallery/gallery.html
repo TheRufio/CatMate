@@ -8,5 +8,11 @@ Gallery
 
 {% block content %}
 
-gallery
+{% if gallery %}
+    You now in - {{ gallery.title }}
+{% else %}
+    You not in gallery
+{% endif %}
+
+    <a href="{% url 'gallery:add_gallery' %}">New gallery</a>
 {% endblock %}

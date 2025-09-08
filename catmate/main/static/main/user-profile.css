@@ -1,0 +1,24 @@
+:root {
+    --color-bg-page: #FFF5E4;
+    --color-bg-container: #FFE3E1;
+    --color-border: #FFD1D1;
+    --color-text-main: #FF9494;
+    --color-input-text: #FFD1D1;
+    --color-input-bg: white;
+    --color-btn-hover: #fdc6c6;
+    --shadow-text: 1px 1px 1px black;
+    --shadow-input: 1px 1px 2px #000000;
+}
+
+html, body {
+    background-color: var(--color-bg-page);
+    margin: 0;
+}
+
+.wrapper {
+    height: 85vh;
+}
+
+.container {
+    margin: auto;
+}
