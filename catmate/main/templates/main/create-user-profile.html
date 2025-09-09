@@ -13,13 +13,15 @@
 <div class="wrapper">
 <div class="container">
     <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+
         {% for field in userprofilename_form %}
             {{ field.label_tag }}
             {{ field }}
             {{ field.errors }}
             <br><br>
         {% endfor %}
-        {% csrf_token %}
+
         {% for field in userprofile_form %}
             {{ field.label_tag }}
             {{ field }}
@@ -30,4 +32,5 @@
     </form>
 </div>
 </div>
+<script src="{% static 'django_select2/django_select2.js' %}"></script>
 {% endblock %}

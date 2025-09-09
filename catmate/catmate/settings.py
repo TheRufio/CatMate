@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     'gallery',
     'main',
     'marketplace',
-    'registration'
+    'registration',
 ]
 
 MIDDLEWARE = [
@@ -125,6 +125,7 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 # STATICFILES_DIRS = [BASE_DIR / 'static']
+STATIC_ROOT = path.join(BASE_DIR, 'staticfiles')
 
 MEDIA_ROOT = path.join(BASE_DIR, 'media')
 MEDIA_ROOT = '/media/'

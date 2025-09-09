@@ -42,7 +42,7 @@ class CreateUserProfileView(LoginRequiredMixin, View):
             request.user.first_name = userprofilename.cleaned_data['first_name']
             request.user.lastname = userprofilename.cleaned_data['last_name']
             request.user.save()
-            return redirect('main:find-someone') # must be chats
+            return redirect('main:chats') # must be chats
         
         return render(request, self.template_name, 
                       {'userprofile_form': userprofile,

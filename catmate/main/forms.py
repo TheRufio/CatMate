@@ -7,10 +7,15 @@ class UserProfileForm(forms.ModelForm):
         model = UserProfile
         fields = ['avatar', 'age', 'gender', 'interests']
         widgets = {
-            'intersts': forms.CheckboxSelectMultiple,
+            'interests': forms.CheckboxSelectMultiple,
         } # might choice interests better way. Not ctr+mouse1
 
 class UserProfileNameForm(forms.ModelForm):
     class Meta:
         model = CustomUser
         fields = ['first_name', 'last_name']
+    
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['first_name'].required = True
+        self.fields['last_name'].required = True

@@ -21,6 +21,9 @@ class UserProfile(models.Model):
     )
     interests = models.ManyToManyField(Interes)
 
+    def __str__(self):
+        return self.user.username
+
 class ChatProfile(models.Model):
     coins = models.IntegerField()
     max_coins = models.IntegerField()
