@@ -1,7 +1,18 @@
 from django.shortcuts import render, redirect
 from django.views import View
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib import messages
 from .forms import UserProfileForm, UserProfileNameForm
+from .models import ChatMember, Chat
+
+class ChatsView(LoginRequiredMixin, View):
+    template_name = 'main/chats.html'
+
+    def get(self, request):
+        chats = Chat.objects.filter(chatmember__user=request.user)
+        if not chats:
+            messages.info(request, 'You don\'t have any chats yet')
+        return render(request, self.template_name, {'chats': chats})
 
 class FindSomeoneView(LoginRequiredMixin, View):
     template_name = 'main/find-someone.html'

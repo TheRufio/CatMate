@@ -1,0 +1,18 @@
+{% extends 'main/template.html' %}
+{% load static %}
+
+{% block head %}
+{% endblock %}
+
+{% block title %}
+    Chats
+{% endblock %}
+
+{% block content %}
+    {% if messages %}
+        {% for message in messages %}
+            {{message}}
+        {% endfor %}
+    {% endif %}
+    <a href="{% url 'main:find-someone' %}">Find someone</a>
+{% endblock %}

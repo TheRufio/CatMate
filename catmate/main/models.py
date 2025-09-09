@@ -8,7 +8,7 @@ class Interes(models.Model):
         return self.name
 
 class UserProfile(models.Model):
-    user = models.ForeignKey(
+    user = models.OneToOneField(
         'registration.CustomUser',
         on_delete=models.CASCADE,
         related_name='userprofile'
@@ -72,6 +72,9 @@ class ChatMember(models.Model):
     )
     chat_avatar = models.ImageField(upload_to='chat/avatars/')
     chat_username = models.CharField(max_length=60)
+
+    class Meta:
+        unique_together = ('chat', 'user')
 
 class Message(models.Model):
     chat = models.ForeignKey(
