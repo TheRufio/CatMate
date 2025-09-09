@@ -2,7 +2,6 @@
 {% load static %}
 
 {% block head %}
-<link rel="stylesheet" href="{% static 'registration/main.css' %}">
 {% endblock %}
 
 {% block title %}
@@ -11,6 +10,11 @@
 
 {% block content %}
 <div class="wrapper">
+    <div id="alert-message" class="alert-success">
+        {% for message in messages %}
+            {{message}}
+        {% endfor %}
+    </div>
 <div class="container">
     <a href="{% url 'registration:login' %}">⮞</a>
     <form method="post" autocomplete="off">
@@ -26,4 +30,13 @@
     </form>
 </div>
 </div>
+<script>
+    setTimeout(function() {
+        let msg = document.getElementById("alert-message");
+        if (msg) {
+            msg.style.opacity = "0";
+            setTimeout(() => msg.remove(), 400)
+        }
+    }, 2000);
+</script>
 {% endblock %}

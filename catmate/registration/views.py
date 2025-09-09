@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.views import View
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
+from django.contrib import messages
 from django.core.mail import send_mail
 from django.conf import settings
 from .forms import RegistrationForm, RegistationConfirmForm, LoginForm
@@ -60,7 +61,7 @@ class RegistrationConfirmView(View):
                 )
                 request.session.pop('registration_data', None)
                 request.session.pop('confirmation_key', None)
-                return redirect('gallery:gallery')
+                return redirect('main:create-user-profile')
         return render(request, self.template, {'form': form})
     
 class LoginView(View):
@@ -80,5 +81,11 @@ class LoginView(View):
             user = authenticate(request, username=username, password=password)
             if user is not None:
                 login(request, user)
-                return redirect('main:home')
+                return redirect('main:create-user-profile')
         return render(request, self.template, {'form': form})
+    
+class LogoutView(View):
+    def get(self, request):
+        logout(request)
+        messages.success(request, 'Logout successful')
+        return redirect('registration:registration')
