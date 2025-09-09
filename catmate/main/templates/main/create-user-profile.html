@@ -12,13 +12,21 @@
 {% block content %}
 <div class="wrapper">
 <div class="container">
-    <form method="post" >
-        {% csrf_token %}
-        {% for field in form %}
-        {{ field.label_tag }}
-        {{ field }}
-        {{ field.errors }}
+    <form method="post" enctype="multipart/form-data">
+        {% for field in userprofilename_form %}
+            {{ field.label_tag }}
+            {{ field }}
+            {{ field.errors }}
+            <br><br>
         {% endfor %}
+        {% csrf_token %}
+        {% for field in userprofile_form %}
+            {{ field.label_tag }}
+            {{ field }}
+            {{ field.errors }}
+            <br><br>
+        {% endfor %}
+        <button type="submit">Submit</button>
     </form>
 </div>
 </div>

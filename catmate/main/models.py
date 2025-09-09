@@ -9,8 +9,9 @@ class Interes(models.Model):
 
 class UserProfile(models.Model):
     user = models.ForeignKey(
-        'marketplace.ChatProfileStyle',
-        on_delete=models.CASCADE
+        'registration.CustomUser',
+        on_delete=models.CASCADE,
+        related_name='userprofile'
     )
     avatar = models.ImageField(upload_to='avatars/')
     age = models.PositiveIntegerField()

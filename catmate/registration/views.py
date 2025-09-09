@@ -6,6 +6,7 @@ from django.core.mail import send_mail
 from django.conf import settings
 from .forms import RegistrationForm, RegistationConfirmForm, LoginForm
 from .models import CustomUser
+from main.models import UserProfile
 from random import randint
 
 class RegistrationView(View):
@@ -81,7 +82,10 @@ class LoginView(View):
             user = authenticate(request, username=username, password=password)
             if user is not None:
                 login(request, user)
-                return redirect('main:create-user-profile')
+                if UserProfile.objects.filter(user=request.user).exists():
+                    return redirect('main:find-someone') # must be chats
+                else:
+                    return redirect('main:create-user-profile')
         return render(request, self.template, {'form': form})
     
 class LogoutView(View):
