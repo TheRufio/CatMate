@@ -2,6 +2,7 @@
 {% load static %}
 
 {% block head %}
+<link rel="stylesheet" href="{% static 'main/user-profile.css' %}">
 {% endblock %}
 
 {% block title %}
@@ -9,5 +10,22 @@
 {% endblock %}
 
 {% block content %}
-{{ }}
+<header>
+    {% if request.user == user_profile %}
+    !Mypage!
+    <!-- some buttons to change settings -->
+    {% endif %}
+    <nav>
+        
+    </nav>
+</header>
+<main>
+    {{ user_profile.username }}
+    {{ user_profile.first_name }}
+    {{ user_profile.last_name }}
+    <img src="{{ user_profile.userprofile.avatar.url }}">
+</main>
+<footer>
+    
+</footer>
 {% endblock %}

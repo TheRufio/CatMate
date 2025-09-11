@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import FindSomeoneView, CreateUserProfileView, ChatsView, ChatView
+from .views import FindSomeoneView, CreateUserProfileView, ChatsView, ChatView, UserProfileView
 
 app_name = 'main'
 urlpatterns = [
@@ -7,4 +7,5 @@ urlpatterns = [
     path('chats/', ChatsView.as_view(), name='chats'),
     path('chat/<str:username>', ChatView.as_view(), name='chat'),
     path('find-someone/', FindSomeoneView.as_view(), name='find-someone'),
+    path('user-profile/<str:username>', UserProfileView.as_view(), name='user-profile')
 ]

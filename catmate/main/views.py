@@ -4,6 +4,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
 from .forms import UserProfileForm, UserProfileNameForm
 from .models import ChatMember, Chat, UserProfile
+from registration.models import CustomUser
 
 class ChatsView(LoginRequiredMixin, View):
     template_name = 'main/chats.html'
@@ -59,3 +60,10 @@ class ChatView(LoginRequiredMixin, View):
 
     def get(self, request, username):
         return render(request, self.template_name)
+    
+class UserProfileView(LoginRequiredMixin, View):
+    template_name = 'main/user-profile.html'
+
+    def get(self, request, username):
+        user_profile = CustomUser.objects.get(username=username)
+        return render(request, self.template_name, {'user_profile': user_profile})

@@ -8,9 +8,11 @@
 {% endblock %}
 
 {% block content %}
-
+    
     <figure>
-        <figcaption>TEST USER PROFILE!</figcaption>
+        <figcaption>TEST 
+            <a target="_self" href="{% url 'main:user-profile' request.user.username %}">USER PROFILE!</a>
+        </figcaption>
         <img src="{{ request.user.userprofile.avatar.url }}" style="width: 200px;height: 200px;">
         <figcaption>
             {{ request.user.username }}
@@ -26,7 +28,7 @@
     <figure>
         <img src="{{ recommend_profile.avatar.url }}" style="width: 200px;height: 200px;">
         <figcaption>
-                {{ recommend_profile.user.username }}
+                <a href="{% url 'main:user-profile' recommend_profile.user.username %}">{{ recommend_profile.user.username }}</a>
                 {{ recommend_profile.user.first_name }}
                 {{ recommend_profile.user.last_name }}
                 {% for recommend_interest in recommend_profile.interests.all %}
@@ -37,6 +39,7 @@
                     {% endif %}
                 {% endfor %}
                 <a href="{% url 'main:chat' recommend_profile.user.username %}">✔</a>
+                <a href="" target="_blank">Show other</a>
         </figcaption>
     </figure>
 

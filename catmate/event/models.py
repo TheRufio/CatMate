@@ -1,6 +1,8 @@
 from django.db import models
 from marketplace.models import Item, Currency
 
+# Add past_events and upcoming_events
+
 class Events(models.Model):
     members = models.ManyToManyField(
         'main.ChatProfile',
