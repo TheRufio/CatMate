@@ -8,5 +8,36 @@
 {% endblock %}
 
 {% block content %}
-{{ request.user }}
+
+    <figure>
+        <figcaption>TEST USER PROFILE!</figcaption>
+        <img src="{{ request.user.userprofile.avatar.url }}" style="width: 200px;height: 200px;">
+        <figcaption>
+            {{ request.user.username }}
+            {{ request.user.first_name }}
+            {{ request.user.last_name }}
+            {% for interest in request.user.userprofile.interests.all %}
+                <strong>{{ interest }}{% if not forloop.last %}, {% endif %}</strong>
+            {% endfor %}
+        </figcaption>
+    </figure>
+
+{% for recommend_profile in recommend_users %}
+    <figure>
+        <img src="{{ recommend_profile.avatar.url }}" style="width: 200px;height: 200px;">
+        <figcaption>
+                {{ recommend_profile.user.username }}
+                {{ recommend_profile.user.first_name }}
+                {{ recommend_profile.user.last_name }}
+                {% for recommend_interest in recommend_profile.interests.all %}
+                    {% if recommend_interest in request.user.userprofile.interests.all %}
+                        <strong>{{ recommend_interest }}{% if not forloop.last %}, {% endif %}</strong>
+                    {% else %}
+                        {{ recommend_interest }}{% if not forloop.last %}, {% endif %}
+                    {% endif %}
+                {% endfor %}
+        </figcaption>
+    </figure>
+
+{% endfor %}
 {% endblock %}

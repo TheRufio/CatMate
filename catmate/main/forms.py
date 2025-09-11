@@ -8,7 +8,7 @@ class UserProfileForm(forms.ModelForm):
         fields = ['avatar', 'age', 'gender', 'interests']
         widgets = {
             'interests': forms.CheckboxSelectMultiple,
-        } # might choice interests better way. Not ctr+mouse1
+        } 
 
 class UserProfileNameForm(forms.ModelForm):
     class Meta:
