@@ -53,3 +53,9 @@ class CreateUserProfileView(LoginRequiredMixin, View):
                       {'userprofile_form': userprofile,
                        'userprofilename_form': userprofilename}
         )
+
+class ChatView(LoginRequiredMixin, View):
+    template_name = 'main/chat.html'
+
+    def get(self, request, username):
+        return render(request, self.template_name)
