@@ -21,10 +21,14 @@
     </nav>
 </header>
 <main>
-    {{ user_profile.username }}
-    {{ user_profile.first_name }}
-    {{ user_profile.last_name }}
-    <img src="{{ user_profile.userprofile.avatar.url }}">
+    <div>
+        {{ user_profile.username }}
+        {{ user_profile.first_name }}
+        {{ user_profile.last_name }}
+        <img src="{{ user_profile.userprofile.avatar.url }}">
+    </div>
+    <br>
+    <a href="{% url 'main:find-someone' %}">FindSomeOne</a>
 </main>
 <footer>
     

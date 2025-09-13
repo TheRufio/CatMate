@@ -30,14 +30,15 @@ class ChatProfile(models.Model):
     
     achievement = models.ForeignKey(
         'Achievement',
-        on_delete=models.CASCADE
+        on_delete=models.CASCADE,
+        null=True,
+        blank=True
     )
     events = models.ForeignKey(
         'event.Events',
         on_delete=models.CASCADE
     )
 
-    
     inventory = models.ForeignKey(
         'Inventory',
         on_delete=models.CASCADE
@@ -49,7 +50,9 @@ class ChatProfile(models.Model):
     style_item = models.ForeignKey(
         'marketplace.Item',
         on_delete=models.CASCADE,
-        related_name='style'
+        related_name='style',
+        null=True,
+        blank=True
     )
 
 class Chat(models.Model):

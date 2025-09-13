@@ -3,17 +3,11 @@ from django.views import View
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
 from .forms import UserProfileForm, UserProfileNameForm
-from .models import ChatMember, Chat, UserProfile
+from .models import ChatMember, Chat, UserProfile, ChatProfile, Achievement, Inventory
+from gallery.models import Gallery
+from marketplace.models import Item
+from event.models import Events
 from registration.models import CustomUser
-
-class ChatsView(LoginRequiredMixin, View):
-    template_name = 'main/chats.html'
-
-    def get(self, request):
-        chats = Chat.objects.filter(chatmember__user=request.user)
-        if not chats:
-            messages.info(request, 'You don\'t have any chats yet')
-        return render(request, self.template_name, {'chats': chats})
 
 class FindSomeoneView(LoginRequiredMixin, View):
     template_name = 'main/find-someone.html'
@@ -60,7 +54,27 @@ class ChatView(LoginRequiredMixin, View):
 
     def get(self, request, username):
         return render(request, self.template_name)
+
+class ChatCreateView(LoginRequiredMixin, View):
     
+    def get(self, request, username):
+        other_user = CustomUser.objects.filter(username=username)
+        
+        chat_profile = ChatProfile.objects.create(
+            coins=0,
+            max_coins=0,
+        )
+
+class ChatsView(LoginRequiredMixin, View):
+    template_name = 'main/chats.html'
+
+    def get(self, request):
+        chats = Chat.objects.filter(chatmember__user=request.user)
+        if not chats:
+            messages.info(request, 'You don\'t have any chats yet')
+        return render(request, self.template_name, {'chats': chats})
+
+
 class UserProfileView(LoginRequiredMixin, View):
     template_name = 'main/user-profile.html'
 

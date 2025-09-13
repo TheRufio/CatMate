@@ -39,7 +39,7 @@
                         {{ recommend_interest }}{% if not forloop.last %}, {% endif %}
                     {% endif %}
                 {% endfor %}
-                <a href="{% url 'main:chat' recommend_profile.user.username %}">✔</a>
+                <a href="{% url 'main:chat-create' recommend_profile.user.username %}">✔</a>
                 <a href="" target="_blank">Show other</a>
         </figcaption>
     </figure>
