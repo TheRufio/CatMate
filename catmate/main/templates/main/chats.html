@@ -15,6 +15,10 @@
             {{message}}
         {% endfor %}
     {% endif %}
-    
+    {% for chat in chats %}
+        <a href="{% url 'main:chat' chat.id %}">
+            {{chat.name}}
+        </a>
+    {% endfor %}
     <a href="{% url 'main:find-someone' %}">Find someone</a>
 {% endblock %}

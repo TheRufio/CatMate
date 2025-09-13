@@ -1,9 +1,11 @@
 from django.shortcuts import render, redirect
 from django.views import View
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .forms import UserProfileForm, UserProfileNameForm
 from .models import ChatMember, Chat, UserProfile, ChatProfile, Achievement, Inventory
+from .choices import Specials
 from gallery.models import Gallery
 from marketplace.models import Item
 from event.models import Events
@@ -13,10 +15,17 @@ class FindSomeoneView(LoginRequiredMixin, View):
     template_name = 'main/find-someone.html'
     def get(self, request):
         user_profile = UserProfile.objects.get(user=request.user)
-        print(user_profile)
+        user_chats = Chat.objects.filter(chatmember__user=request.user)
+        users_with_chats = CustomUser.objects.filter(
+            chatmember__chat__in=user_chats
+        ).exclude(pk=request.user.pk)
         recommend_users = UserProfile.objects.filter(
             interests__in=user_profile.interests.all()
-        ).exclude(pk=user_profile.pk).distinct()
+        ).exclude(
+            pk=user_profile.pk
+        ).exclude(
+            user__in=users_with_chats
+        ).distinct()
         return render(request, self.template_name, {'recommend_users': recommend_users})
     
 class CreateUserProfileView(LoginRequiredMixin, View):
@@ -52,18 +61,34 @@ class CreateUserProfileView(LoginRequiredMixin, View):
 class ChatView(LoginRequiredMixin, View):
     template_name = 'main/chat.html'
 
-    def get(self, request, username):
+    def get(self, request, id):
         return render(request, self.template_name)
 
-class ChatCreateView(LoginRequiredMixin, View):
-    
-    def get(self, request, username):
-        other_user = CustomUser.objects.filter(username=username)
-
-        chat_profile = ChatProfile.objects.create(
-            coins=0,
-            max_coins=0,
-        )
+@login_required
+def create_chat(request, username):
+    other_user = CustomUser.objects.get(username=username)
+    chat = Chat.objects.create(
+        name=f'{request.user.username} & {other_user.username}',
+        special_type = Specials.NONE
+    )
+    ChatProfile.objects.create(
+        chat=chat,
+        coins=0,
+        max_coins=0
+    )
+    ChatMember.objects.create(
+        chat=chat,
+        user=request.user,
+        chat_avatar=request.user.userprofile.avatar,
+        chat_username=request.user.username
+    )
+    ChatMember.objects.create(
+        chat=chat,
+        user=other_user,
+        chat_avatar=UserProfile.objects.get(user=other_user).avatar,
+        chat_username=other_user.username
+    )
+    return redirect('main:chats')
 
 class ChatsView(LoginRequiredMixin, View):
     template_name = 'main/chats.html'
