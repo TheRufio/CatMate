@@ -3,6 +3,13 @@ from main.choices import Specials
 from .choices import ItemType, Rarity, Currency, ListingStatus, LedgerReason, OrderStatus
 
 class Item(models.Model):
+    chat_profile = models.ForeignKey(
+        'main.ChatProfile',
+        related_name='items',
+        on_delete=models.CASCADE,
+        null=True,
+        blank=True
+    )
     name = models.CharField(max_length=80)
     type = models.CharField(max_length=30, choices=ItemType.choices)
     rarity = models.CharField(max_length=12, choices=Rarity.choices)

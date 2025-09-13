@@ -4,7 +4,7 @@ class Gallery(models.Model):
     chat_profile = models.ForeignKey(
         'main.ChatProfile',
         on_delete=models.CASCADE,
-        related_name='chat_profile'
+        related_name='galleries'
     )
     title = models.CharField(max_length=120)
     description = models.CharField(max_length=255)

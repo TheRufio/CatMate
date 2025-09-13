@@ -59,7 +59,7 @@ class ChatCreateView(LoginRequiredMixin, View):
     
     def get(self, request, username):
         other_user = CustomUser.objects.filter(username=username)
-        
+
         chat_profile = ChatProfile.objects.create(
             coins=0,
             max_coins=0,

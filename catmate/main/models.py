@@ -25,41 +25,11 @@ class UserProfile(models.Model):
         return self.user.username
 
 class ChatProfile(models.Model):
+    chat = models.OneToOneField('main.Chat', on_delete=models.CASCADE)
     coins = models.IntegerField()
     max_coins = models.IntegerField()
-    
-    achievement = models.ForeignKey(
-        'Achievement',
-        on_delete=models.CASCADE,
-        null=True,
-        blank=True
-    )
-    events = models.ForeignKey(
-        'event.Events',
-        on_delete=models.CASCADE
-    )
-
-    inventory = models.ForeignKey(
-        'Inventory',
-        on_delete=models.CASCADE
-    )
-    gallery = models.ForeignKey(
-        'gallery.Gallery',
-        on_delete=models.CASCADE
-    )
-    style_item = models.ForeignKey(
-        'marketplace.Item',
-        on_delete=models.CASCADE,
-        related_name='style',
-        null=True,
-        blank=True
-    )
 
 class Chat(models.Model):
-    chat_profile = models.OneToOneField(
-        ChatProfile, 
-        on_delete=models.CASCADE
-    )
     name = models.CharField(max_length=100)
     created_at = models.DateTimeField(auto_now_add=True)
     special_type = models.CharField(
@@ -99,7 +69,7 @@ class Inventory(models.Model):
     chat_profile = models.ForeignKey(
         ChatProfile,
         on_delete=models.CASCADE,
-        related_name='chat_profile_inventory'
+        related_name='inventories'
     )
     item = models.ForeignKey(
         'marketplace.Item',
@@ -108,6 +78,10 @@ class Inventory(models.Model):
     quantity = models.PositiveIntegerField(default=1)
 
 class Achievement(models.Model):
+    chat_profile = models.ManyToManyField(
+        'main.ChatProfile',
+        related_name='achievements'
+    )
     name = models.CharField(max_length=80)
     description = models.TextField()
     special_type = models.CharField(
