@@ -11,4 +11,7 @@ Chat {{request.user}} and
 {% endblock %}
 
 {% block content %}
+    {{ chat.name }}
+    {{ chat.created_at }}
+    {{ chat.special_type }}
 {% endblock %}

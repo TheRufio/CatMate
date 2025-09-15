@@ -62,7 +62,8 @@ class ChatView(LoginRequiredMixin, View):
     template_name = 'main/chat.html'
 
     def get(self, request, id):
-        return render(request, self.template_name)
+        chat = Chat.objects.get(id=id)
+        return render(request, self.template_name, {'chat': chat})
 
 @login_required
 def create_chat(request, username):

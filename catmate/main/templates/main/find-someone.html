@@ -9,11 +9,9 @@
 {% endblock %}
 
 {% block content %}
-    
+    <a target="_self" href="{% url 'main:user-profile' request.user.username %}">User profile</a>
+    <a href="{% url 'main:chats' %}">Chats</a>
     <figure>
-        <figcaption>TEST 
-            <a target="_self" href="{% url 'main:user-profile' request.user.username %}">USER PROFILE!</a>
-        </figcaption>
         <img src="{{ request.user.userprofile.avatar.url }}" style="width: 200px;height: 200px;">
         <figcaption>
             {{ request.user.username }}

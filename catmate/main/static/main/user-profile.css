@@ -12,13 +12,22 @@
 
 html, body {
     background-color: var(--color-bg-page);
-    margin: 0;
 }
 
-.wrapper {
-    height: 85vh;
+.profile-container {
+    max-width: 80%;
+    width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #FFE3E1;
+    padding: 20px;
+    margin-top: 50px
 }
 
-.container {
-    margin: auto;
+.profile-container-item {
+    display: inline-block;
+}
+
+.profile-container-item label {
+    background-color: red;
 }

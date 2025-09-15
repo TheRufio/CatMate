@@ -29,6 +29,9 @@ class ChatProfile(models.Model):
     coins = models.IntegerField()
     max_coins = models.IntegerField()
 
+    def __str__(self):
+        return f'{self.chat.name} | profile'
+
 class Chat(models.Model):
     name = models.CharField(max_length=100)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -36,6 +39,9 @@ class Chat(models.Model):
         max_length=6,
         choices=Specials.choices
     )
+
+    def __str__(self):
+        return f'{self.name} | chat'
 
 class ChatMember(models.Model):
     chat = models.ForeignKey(
@@ -51,6 +57,9 @@ class ChatMember(models.Model):
 
     class Meta:
         unique_together = ('chat', 'user')
+
+    def __str__(self):
+        return f'{self.chat.name} | member'
 
 class Message(models.Model):
     chat = models.ForeignKey(

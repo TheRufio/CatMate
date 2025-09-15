@@ -10,16 +10,15 @@
 {% endblock %}
 
 {% block content %}
-<div class="wrapper">
-<div class="container">
+<div class="profile-container">
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
-
         {% for field in userprofilename_form %}
-            {{ field.label_tag }}
-            {{ field }}
-            {{ field.errors }}
-            <br><br>
+            <div class="profile-container-item">
+                {{ field.label_tag }}        
+                {{ field }}
+                {{ field.errors }}
+            </div>
         {% endfor %}
 
         {% for field in userprofile_form %}
