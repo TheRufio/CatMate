@@ -28,6 +28,19 @@ html, body {
     display: inline-block;
 }
 
-.profile-container-item label {
+/* .profile-container-item label {
     background-color: red;
+}
+
+.profile-container-item input {
+    background-color: gray;
+}
+
+.profile-container-item-interests {
+    display: block;
+    background-color: #9c4f4f;
+} */
+
+.profile-input {
+    background-color: rebeccapurple;
 }

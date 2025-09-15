@@ -7,11 +7,11 @@ class UserProfileForm(forms.ModelForm):
         model = UserProfile
         fields = ['avatar', 'age', 'gender', 'interests']
         widgets = {
-            'age': forms.NumberInput(attrs={'class': 'profile-input'}),
+            'age': forms.NumberInput(attrs={'class': 'profile-input profile-age'}),
             'interests': forms.CheckboxSelectMultiple(attrs={'class': 'profile_checkbox'}),
         } 
 
-# Change all widget like interests
+# Change all widget like interests 
 
 class UserProfileNameForm(forms.ModelForm):
     class Meta:

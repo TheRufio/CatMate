@@ -22,10 +22,11 @@
         {% endfor %}
 
         {% for field in userprofile_form %}
-            {{ field.label_tag }}
-            {{ field }}
-            {{ field.errors }}
-            <br><br>
+            <div class="profile-container-item {% if field.name == 'interests'%} profile-container-item-interests {% endif %}">
+                {{ field.label_tag }}
+                {{ field }}
+                {{ field.errors }}
+            </div>
         {% endfor %}
         <button type="submit">Submit</button>
     </form>
