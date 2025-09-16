@@ -7,8 +7,10 @@ class UserProfileForm(forms.ModelForm):
         model = UserProfile
         fields = ['avatar', 'age', 'gender', 'interests']
         widgets = {
-            'age': forms.NumberInput(attrs={'class': 'profile-input profile-age'}),
-            'interests': forms.CheckboxSelectMultiple(attrs={'class': 'profile_checkbox'}),
+            'avatar': forms.FileInput(attrs={'class': 'field-value avatar'}),
+            'age': forms.NumberInput(attrs={'class': 'field-value'}),
+            'gender': forms.TextInput(attrs={'class': 'field-value'}),
+            'interests': forms.CheckboxSelectMultiple(attrs={'class': 'field-value'}),
         } 
 
 # Change all widget like interests 
@@ -21,7 +23,8 @@ class UserProfileNameForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['first_name'].required = True
-        # self.fields['first_name'].widget.attrs.update({'class': 'profile-input'})
+        self.fields['first_name'].widget.attrs.update({'class': 'field-value'})
         self.fields['last_name'].required = True
+        self.fields['last_name'].widget.attrs.update({'class': 'field-value'})
 
 # And here like first_name

@@ -21,26 +21,46 @@ html, body {
     margin-right: auto;
     background-color: #FFE3E1;
     padding: 20px;
-    margin-top: 50px
+    margin-top: 20vh;
 }
 
 .profile-container-item {
-    display: inline-block;
-}
-
-/* .profile-container-item label {
-    background-color: red;
-}
-
-.profile-container-item input {
-    background-color: gray;
-}
-
-.profile-container-item-interests {
     display: block;
-    background-color: #9c4f4f;
-} */
+    width: 100%;
+    margin-bottom: 15px;
+    font-size: 0;
+}
 
-.profile-input {
-    background-color: rebeccapurple;
+.profile-container-item .field-name,
+.profile-container-item .field-value {
+    display: inline-block;
+    width: 50%;
+}
+
+.profile-container-item .field-name {
+    font-size: 24px;
+    text-align: left;
+}
+
+.profile-container-item .field-value {
+    text-align: right;
+    font-size: 18px;
+}
+
+
+.profile-container-item .field-error {
+    display: block;
+    margin-top: 5px;
+    color: red;
+    font-size: 12px;
+}
+
+
+input[type="file"]::file-selector-button {
+    display: none;
+}
+
+.profile-container button {
+    display: block;
+    margin: 20px auto;
 }

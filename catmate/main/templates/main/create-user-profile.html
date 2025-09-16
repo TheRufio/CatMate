@@ -15,20 +15,20 @@
         {% csrf_token %}
         {% for field in userprofilename_form %}
             <div class="profile-container-item">
-                {{ field.label_tag }}        
-                {{ field }}
-                {{ field.errors }}
+                <div class="field-name">{{ field.label }}</div>
+                <div class="field-value">{{ field }}</div>
+                <div class="field-error">{{ field.errors }}</div>
             </div>
         {% endfor %}
 
         {% for field in userprofile_form %}
-            <div class="profile-container-item {% if field.name == 'interests'%} profile-container-item-interests {% endif %}">
-                {{ field.label_tag }}
-                {{ field }}
-                {{ field.errors }}
+            <div class="profile-container-item">
+                <div class="field-name">{{ field.label }}</div>
+                <div class="field-value">{{ field }}</div>
+                <div class="field-error">{{ field.errors }}</div>
             </div>
         {% endfor %}
-        <button type="submit">Submit</button>
+        <button type="submit">Submit</button>    
     </form>
 </div>
 </div>
