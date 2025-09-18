@@ -9,7 +9,7 @@
 {% endblock %}
 
 {% block content %}
-<div class="wrapper">
+<!-- <div class="wrapper">
     <div id="alert-message" class="alert-success">
         {% for message in messages %}
             {{message}}
@@ -38,5 +38,25 @@
             setTimeout(() => msg.remove(), 500)
         }
     }, 3000);
-</script>
+</script> -->
+<h1>
+    Registration <b>⮞</b>
+    <a href="{% url 'registration:login' %}">Login</a><b> ⮞</b>
+    <a href="{% url 'main:create-user-profile'%}">Profile</a>
+</h1>
+<div class="form-container">
+    <h2>Create new account</h2>
+    <form method="post">
+        {% csrf_token %}
+        {% for field in form %}
+            <div class="form-row">
+                {{ field.label_tag|cut:":"}}{{ field }}
+                {% if field.errors %}
+                    {{ field.errors}}
+                {% endif %}
+            </div>
+        {% endfor %}
+        <input class="submit-form" type="submit">
+    </form>
+</div>
 {% endblock %}

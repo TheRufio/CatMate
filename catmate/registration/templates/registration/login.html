@@ -9,21 +9,24 @@ Login
 {% endblock %}
 
 {% block content %}
-<div class="wrapper">
-<div class="container">
-    <a href="{% url 'registration:registration' %}">⮜</a>
+<h1>
+    <a href="{% url 'registration:registration' %}">Registration</a>
+    <b>⮞ Login ⮞ </b><a href="{% url 'main:create-user-profile'%}">Profile</a>
+</h1>
+<div class="form-container">
+    <h2>Login to account</h2>
     <form method="post">
         {% csrf_token %}
         {% for field in form %}
-            {{ field.label_tag }}
-            {{ field }}
-            {% if field.errors %}
-                {{ field.errors }}
-            {% endif %}
+            <div class="form-row">
+                {{ field.label_tag|cut:":" }}{{ field }}
+                {% if field.errors %}
+                    {{ field.errors }}
+                {% endif %}
+            </div>
         {% endfor %}
-        <button type="submit">Submit</button>
+        <input class="submit-form" type="submit">
     </form>
 </div>
 
-</div>
 {% endblock %}

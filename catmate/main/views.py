@@ -32,6 +32,9 @@ class CreateUserProfileView(LoginRequiredMixin, View):
     template_name = 'main/create-user-profile.html'
 
     def get(self, request):
+        if hasattr(request.user, "userprofile"):
+            return redirect('main:chats')
+
         userprofile = UserProfileForm()
         userprofilename = UserProfileNameForm()
         return render(request, self.template_name, 
