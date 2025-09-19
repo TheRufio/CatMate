@@ -9,6 +9,14 @@ class RegistrationForm(forms.ModelForm):
         model = CustomUser
         fields = ['username', 'email', 'password1', 'password2']
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for name, field in self.fields.items():
+            if name in ('password1', 'password2'):
+                field.widget.attrs['autocomplete'] = 'new-password'
+            else:
+                field.widget.attrs['autocomplete'] = 'off'
+
     def clean(self):
         cleaned_data = super().clean()
         password1 = cleaned_data.get('password1')
@@ -23,5 +31,16 @@ class RegistationConfirmForm(forms.Form):
         max_length=6)
     
 class LoginForm(forms.Form):
-    username = forms.CharField(label='Username')
-    password = forms.CharField(label='Password', widget=forms.widgets.PasswordInput)
+    username = forms.CharField(
+        label='Username', 
+        widget=forms.TextInput(attrs={
+            'autocomplete': 'off'
+        })
+    )
+    password = forms.CharField(
+        label='Password', 
+        widget=forms.PasswordInput(attrs={
+            'autocomplete': 'new-password'
+        })
+    )
+

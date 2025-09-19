@@ -30,15 +30,7 @@
     </form>
 </div>
 </div>
-<script>
-    setTimeout(function() {
-        let msg = document.getElementById("alert-message");
-        if (msg) {
-            msg.style.opacity = "0";
-            setTimeout(() => msg.remove(), 500)
-        }
-    }, 3000);
-</script> -->
+ -->
 <h1>
     Registration <b>⮞</b>
     <a href="{% url 'registration:login' %}">Login</a><b> ⮞</b>
@@ -56,7 +48,7 @@
                 {% endif %}
             </div>
         {% endfor %}
-        <input class="submit-form" type="submit">
+        <input class="submit-form" type="submit" value="✔">
     </form>
 </div>
 {% endblock %}

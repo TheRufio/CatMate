@@ -11,7 +11,7 @@ Login
 {% block content %}
 <h1>
     <a href="{% url 'registration:registration' %}">Registration</a>
-    <b>⮞ Login ⮞ </b><a href="{% url 'main:create-user-profile'%}">Profile</a>
+    <b>⮞ </b>Login<b> ⮞ </b><a href="{% url 'main:create-user-profile'%}">Profile</a>
 </h1>
 <div class="form-container">
     <h2>Login to account</h2>
@@ -25,7 +25,7 @@ Login
                 {% endif %}
             </div>
         {% endfor %}
-        <input class="submit-form" type="submit">
+        <input class="submit-form" type="submit" value="✔">
     </form>
 </div>
 
