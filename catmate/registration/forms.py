@@ -35,12 +35,14 @@ class LoginForm(forms.Form):
         label='Username', 
         widget=forms.TextInput(attrs={
             'autocomplete': 'off'
-        })
+        }),
+        required=True
     )
     password = forms.CharField(
         label='Password', 
         widget=forms.PasswordInput(attrs={
             'autocomplete': 'new-password'
-        })
+        }),
+        required=True
     )
 

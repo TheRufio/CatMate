@@ -20,12 +20,12 @@ Login
         {% for field in form %}
             <div class="form-row">
                 {{ field.label_tag|cut:":" }}{{ field }}
-                {% if field.errors %}
-                    {{ field.errors }}
-                {% endif %}
             </div>
         {% endfor %}
         <input class="submit-form" type="submit" value="✔">
+        {% if form.non_field_errors %}
+            {{ form.non_field_errors }}
+        {% endif %}
     </form>
 </div>
 

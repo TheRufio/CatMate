@@ -14,6 +14,8 @@ from registration.models import CustomUser
 class FindSomeoneView(LoginRequiredMixin, View):
     template_name = 'main/find-someone.html'
     def get(self, request):
+        if not hasattr(request.user, "userprofile"):
+            return redirect('main:create-user-profile')
         user_profile = UserProfile.objects.get(user=request.user)
         user_chats = Chat.objects.filter(chatmember__user=request.user)
         users_with_chats = CustomUser.objects.filter(

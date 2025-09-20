@@ -86,6 +86,8 @@ class LoginView(View):
                     return redirect('main:find-someone') # must be chats
                 else:
                     return redirect('main:create-user-profile')
+            else:
+                form.add_error(None, "Incorrect username or password")
         return render(request, self.template, {'form': form})
     
 class LogoutView(View):
