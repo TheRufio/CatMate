@@ -36,7 +36,7 @@
     <a href="{% url 'registration:login' %}">Login</a><b> ⮞</b>
     <a href="{% url 'main:create-user-profile'%}">Profile</a>
 </h1>
-<div class="form-container">
+<div class="form-container" style="height: 480px;;">
     <h2>Create new account</h2>
     <form method="post">
         {% csrf_token %}

@@ -10,14 +10,19 @@ Confirm
 {% endblock %}
 
 {% block content %}
-<div class="wrapper">
-<div class="container">
+<div class="form-container confirm">
 <form method="post">
     {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Submit</button>
+    <div class="form-row">
+        {% for field in form %}
+            {{ field.label_tag|cut:":" }}{{ field }}
+            {% if field.errors %}
+                {{field.errors}}
+            {% endif %}
+        {% endfor %}
+    </div>
+    <input class="submit-form" type="submit" value="✔">
 </form>
-</div>
 </div>
 
 {% endblock %}

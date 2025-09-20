@@ -13,7 +13,7 @@ Login
     <a href="{% url 'registration:registration' %}">Registration</a>
     <b>⮞ </b>Login<b> ⮞ </b><a href="{% url 'main:create-user-profile'%}">Profile</a>
 </h1>
-<div class="form-container">
+<div class="form-container" style="height:300px;">
     <h2>Login to account</h2>
     <form method="post">
         {% csrf_token %}
