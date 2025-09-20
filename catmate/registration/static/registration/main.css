@@ -25,11 +25,13 @@ html {
 .form-container {
     max-width: 600px; 
     width: 60%;
+    height: auto !important;
     margin: 10vh auto;
     background-color: var(--color-black);
     padding: 30px;
     border: 4px solid var(--color-red-black);
-    border-radius: 20px; 
+    border-radius: 20px;
+
 }
 
 .form-row {
@@ -135,7 +137,21 @@ h2 {
 }
 
 .confirm .form-row input {
-    width: 40%;
+    width: 50%;
     margin: 0 auto;
     display: block;
+}
+
+@media (max-width: 768px) {
+    .form-container {
+        width: 75%;
+    }
+
+    .form-container label,
+    .form-container input {
+        display: block;
+        width: 100%;
+        text-align: center;
+        margin-bottom: 10px;
+    }
 }
