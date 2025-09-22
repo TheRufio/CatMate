@@ -7,7 +7,8 @@ class UserProfileForm(forms.ModelForm):
         model = UserProfile
         fields = ['avatar', 'age', 'gender', 'interests']
         widgets = {
-            'avatar': forms.FileInput(attrs={'class': 'field-value avatar'}),
+            'avatar': forms.FileInput(attrs={'class': 'field-value avatar',
+                                             'style': "display:none"}),
             'age': forms.NumberInput(attrs={'class': 'field-value'}),
             'gender': forms.TextInput(attrs={'class': 'field-value'}),
             'interests': forms.CheckboxSelectMultiple(attrs={'class': 'field-value'}),

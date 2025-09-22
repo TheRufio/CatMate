@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block head %}
-<link rel="stylesheet" href="{% static 'main/user-profile.css' %}">
+<link rel="stylesheet" href="{% static 'main/create-user-profile.css' %}">
 {% endblock %}
 
 {% block title %}
@@ -10,27 +10,67 @@
 {% endblock %}
 
 {% block content %}
-<div class="profile-container">
-    <form method="post" enctype="multipart/form-data">
+<h1>
+    <a href="{% url 'registration:registration' %}">Registration </a>
+    <b> ⮞ </b>
+    <a href="{% url 'registration:login' %}">Login</a><b> ⮞ </b>
+    Profile
+</h1>
+<form method="post" enctype="multipart/form-data">
+    <div class="profile-container">
         {% csrf_token %}
-        {% for field in userprofilename_form %}
-            <div class="profile-container-item">
-                <div class="field-name">{{ field.label }}</div>
-                <div class="field-value">{{ field }}</div>
-                <div class="field-error">{{ field.errors }}</div>
-            </div>
-        {% endfor %}
+        <div class="avatar-block">
+            <img id="avatarPreview"
+                src="{{ userprofile_form.avatar.value.url|default:'/static/main/default-avatar.png' }}"
+                alt="avatar">
 
-        {% for field in userprofile_form %}
-            <div class="profile-container-item">
-                <div class="field-name">{{ field.label }}</div>
-                <div class="field-value">{{ field }}</div>
-                <div class="field-error">{{ field.errors }}</div>
-            </div>
-        {% endfor %}
-        <button type="submit">Submit</button>    
-    </form>
-</div>
-</div>
+            <!-- custom button -->
+            <button type="button" id="uploadBtn">Choose Avatar</button>
+            <span id="fileName">No file chosen</span>
+
+            <!-- hidden input -->
+            {{ userprofile_form.avatar }}
+        </div>
+        <div class="name-block">
+            {{ userprofilename_form.first_name.label_tag|cut:":"  }}   
+            {{ userprofilename_form.first_name }}
+            {{ userprofilename_form.last_name.label_tag|cut:":" }}
+            {{ userprofilename_form.last_name }}
+        </div>
+        <div class="info-block">
+            {{userprofile_form.age.label_tag|cut:":"}}
+            {{userprofile_form.age}}
+            {{userprofile_form.gender.label_tag|cut:":"}}
+            {{userprofile_form.gender}}
+            {{userprofile_form.interests.label_tag|cut:":"}}
+            {{userprofile_form.interests}}
+        </div>
+        <button type="submit">Submit</button>
+    </div>    
+</form>
 <script src="{% static 'django_select2/django_select2.js' %}"></script>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const input = document.querySelector("#id_avatar");
+    const preview = document.querySelector("#avatarPreview");
+    const uploadBtn = document.querySelector("#uploadBtn");
+    const fileName = document.querySelector("#fileName");
+
+    // click button → open file dialog
+    uploadBtn.addEventListener("click", () => input.click());
+
+    // show filename + preview
+    input.addEventListener("change", () => {
+        const file = input.files[0];
+        if (file) {
+            fileName.textContent = file.name; // show file name
+            const reader = new FileReader();
+            reader.onload = e => preview.src = e.target.result;
+            reader.readAsDataURL(file);
+        } else {
+            fileName.textContent = "No file chosen";
+        }
+    });
+});
+</script>
 {% endblock %}
