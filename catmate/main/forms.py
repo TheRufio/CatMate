@@ -1,6 +1,7 @@
 from django import forms
 from .models import UserProfile
 from registration.models import CustomUser
+from .choices import Gender
 
 class UserProfileForm(forms.ModelForm):
     class Meta:
@@ -10,7 +11,8 @@ class UserProfileForm(forms.ModelForm):
             'avatar': forms.FileInput(attrs={'class': 'field-value avatar',
                                              'style': "display:none"}),
             'age': forms.NumberInput(attrs={'class': 'field-value'}),
-            'gender': forms.TextInput(attrs={'class': 'field-value'}),
+            'gender': forms.Select(choices=Gender.choices,
+                                   attrs={'class': 'select-gender'}),
             'interests': forms.CheckboxSelectMultiple(attrs={'class': 'field-value'}),
         } 
 

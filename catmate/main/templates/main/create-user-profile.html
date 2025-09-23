@@ -21,11 +21,12 @@
         {% csrf_token %}
         <div class="avatar-block">
             <img id="avatarPreview"
-                src="{{ userprofile_form.avatar.value.url|default:'/static/main/default-avatar.png' }}"
+                src="{% if userprofile_form.avatar.value %}
+                     {{ userprofile_form.avatar.value.url}} {% else %} {% static 'main/default-avatar.png' %} {% endif %}"
                 alt="avatar">
 
             <!-- custom button -->
-            <button type="button" id="uploadBtn">Choose Avatar</button>
+            <input type="button" id="uploadBtn" value="ChooseAvatar">
             <span id="fileName">No file chosen</span>
 
             <!-- hidden input -->
@@ -36,16 +37,24 @@
             {{ userprofilename_form.first_name }}
             {{ userprofilename_form.last_name.label_tag|cut:":" }}
             {{ userprofilename_form.last_name }}
+            <div class="info-block">
+                {{userprofile_form.age.label_tag|cut:":"}}
+                {{userprofile_form.age}}
+                {{userprofile_form.gender.label_tag|cut:":"}}
+                {{userprofile_form.gender}}
+            </div>
         </div>
-        <div class="info-block">
-            {{userprofile_form.age.label_tag|cut:":"}}
-            {{userprofile_form.age}}
-            {{userprofile_form.gender.label_tag|cut:":"}}
-            {{userprofile_form.gender}}
+        <div class="interests-block">
             {{userprofile_form.interests.label_tag|cut:":"}}
-            {{userprofile_form.interests}}
+            <div class="checkbox-scroll">
+                {% for checkbox in userprofile_form.interests %}
+                    <div class="checkbox-item">
+                        {{ checkbox.tag }} {{ checkbox.choice_label }}
+                    </div>
+                {% endfor %}
+            </div>
         </div>
-        <button type="submit">Submit</button>
+        <input class="submit-form" type="submit" value="✔">
     </div>    
 </form>
 <script src="{% static 'django_select2/django_select2.js' %}"></script>

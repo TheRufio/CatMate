@@ -87,7 +87,7 @@ h2 {
 .form-container input {
     width: 48%;
     font-size: 30px;
-    border: 2px solid var(--color-red-main);
+    border: 2px solid var(--color-red-second);
     border-radius: 10px;
     text-align: center;
     background-color: var(--color-red-main);
@@ -117,6 +117,7 @@ h2 {
     background-color: var(--color-red-contrast);
     border: 2px solid var(--color-red-black);
     transform: scale(1.16);
+    cursor: pointer;
 }
 
 .confirm-row {
