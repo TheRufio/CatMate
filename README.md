@@ -19,13 +19,17 @@
   <img width="1209" height="930" alt="image" src="https://github.com/user-attachments/assets/5687dde5-84cc-41a6-9823-a67da25c1fd7" />
 </p>
 
+# Confirmation
+<p align="center">
+  <img width="1224" height="926" alt="image" src="https://github.com/user-attachments/assets/4473557c-a4d7-41eb-85d6-57326aaf4451" />
+</p>
+
 # Login
 <p align="center">
   <img width="1203" height="925" alt="image" src="https://github.com/user-attachments/assets/503d5936-2cfd-4fd2-9b90-0497a963887e" />
 </p>
 
 # Profile
-<p align="center>
+<p align="center">
   <img width="1244" height="932" alt="image" src="https://github.com/user-attachments/assets/ab3196e2-856f-46e6-8967-e72ac9363634" />
-
 </p>
