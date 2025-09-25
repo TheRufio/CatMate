@@ -40,8 +40,8 @@ Planned and implemented multi-module platform functionality for social interacti
 </p>
 
 # Feauters
-<p>
-  - CSS styles like transition/transform to better user interaction and comfort
-  - Responsive layout using 'flex', 'inline-bloc' and '@media'
-  - Dark and Light theme (coming soon)
-</p>
+<ul>
+  <li>CSS styles like transition/transform for better user interaction and comfort</li>
+  <li>Responsive layout using <code>flex</code>, <code>inline-block</code>, and <code>@media</code></li>
+  <li>Dark and Light theme (coming soon)</li>
+</ul>
