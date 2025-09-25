@@ -13,3 +13,8 @@
 <img width="1896" height="706" alt="image" src="https://github.com/user-attachments/assets/eb3cad03-2fe9-4a0a-b2cd-0d702607e317" />
 
 </p>
+
+# Registration
+<p align="center">
+  <img width="1209" height="930" alt="image" src="https://github.com/user-attachments/assets/5687dde5-84cc-41a6-9823-a67da25c1fd7" />
+</p>
