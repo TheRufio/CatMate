@@ -23,3 +23,9 @@
 <p align="center">
   <img width="1203" height="925" alt="image" src="https://github.com/user-attachments/assets/503d5936-2cfd-4fd2-9b90-0497a963887e" />
 </p>
+
+# Profile
+<p align="center>
+  <img width="1244" height="932" alt="image" src="https://github.com/user-attachments/assets/ab3196e2-856f-46e6-8967-e72ac9363634" />
+
+</p>
